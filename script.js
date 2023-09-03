@@ -51,7 +51,6 @@ function addSlider() {
     const container = document.getElementById("slider-container");
     const titleInput = document.getElementById("slider-title");
     const errorMessage = document.getElementById("error-message");
-    const inputContainer = document.getElementById("input-container");
 
     const title = titleInput.value.trim();
     if (title === "") {
@@ -65,17 +64,27 @@ function addSlider() {
     const value = Math.floor(Math.random() * 101);
     sliderValues.push({ title, value });
 
-    const sliderContainer = createSliderWithValue(value);
-    container.appendChild(sliderContainer);
+    // Create a container for the slider and its title
+    const sliderContainer = document.createElement("div");
+    sliderContainer.className = "slider-container"; // Apply the CSS class
 
-    // Display the title below the slider
+    // Create the slider and percentage text
+    const slider = createSliderWithValue(value);
+
+    // Create the title element
     const titleElement = document.createElement("div");
     titleElement.className = "slider-title";
     titleElement.innerText = title;
-    container.appendChild(titleElement);
+
+    // Append elements to their respective containers
+    sliderContainer.appendChild(slider);
+    sliderContainer.appendChild(titleElement);
+
+    // Append the slider container to the main container
+    container.appendChild(sliderContainer);
 
     // Add an event listener to the slider for mousemove events
-    const slider = sliderContainer.querySelector(".slider");
+    //const slider = sliderContainer.querySelector(".slider");
     slider.addEventListener("mousemove", () => {
         updateTitlePosition(slider, titleElement);
         updatePercentageText(slider, sliderContainer);
@@ -84,28 +93,6 @@ function addSlider() {
     // Initialize the title position and percentage text
     updateTitlePosition(slider, titleElement);
     updatePercentageText(slider, sliderContainer);
-
-    // Calculate the position of the input container just below the title element
-    const titleBottom = titleElement.getBoundingClientRect().bottom;
-    inputContainer.style.marginTop = `${titleBottom + 20}px`;
-
-
-    /* - might want to add later, the code that keeps the input container lower than the last slider
-
-// will have to add this line above
-const inputContainer = document.getElementById("input-container");
-
-    // Calculate the position of the input container just below the title element
-    const titleBottom = titleElement.getBoundingClientRect().bottom;
-    console.log(`titleBottom: ${titleBottom}px`);
-   
-    const newMarginTop = titleBottom -60 ; // Calculate the new margin-top value
-    inputContainer.style.marginTop = `${newMarginTop}px`; // Set the margin-top
-    console.log(`inputContainer marginTop: ${newMarginTop}px`); // Log the margin-top value
-*/
-
-
-
 
 
 }
@@ -116,31 +103,36 @@ function updatePercentageText(slider, container) {
     percentageText.innerText = `${slider.value}%`;
 }
 
-// Function to remove the last added slider
-function removeLastSlider() {
-    const container = document.getElementById("slider-container");
-    const sliders = container.querySelectorAll(".slider");
 
-    // Check if there are any sliders to remove
-    if (sliders.length > 0) {
-        const lastSlider = sliders[sliders.length - 1];
-        container.removeChild(lastSlider);
 
-        // Remove the corresponding title and percentage text
-        const titles = container.querySelectorAll(".slider-title");
-        const lastTitle = titles[titles.length - 1];
-        container.removeChild(lastTitle);
+// // Function to remove the last added slider
+// function removeLastSlider() {
+//     const container = document.getElementById("slider-container");
+//     const sliders = container.querySelectorAll(".slider");
 
-        // Move the input container higher since a slider is removed
-        const inputContainer = document.getElementById("input-container");
-        inputContainer.style.marginTop = `${container.clientHeight + 20}px`;
+//     // Check if there are any sliders to remove
+//     if (sliders.length > 0) {
+//         const lastSlider = sliders[sliders.length - 1];
+//         container.removeChild(lastSlider);
 
-        // Remove the corresponding value from the sliderValues array
-        sliderValues.pop();
-    }
-}
+//         // Remove the corresponding title and percentage text
+//         const titles = container.querySelectorAll(".slider-title");
+//         const lastTitle = titles[titles.length - 1];
+//         container.removeChild(lastTitle);
+
+//         // Move the input container higher since a slider is removed
+//         const inputContainer = document.getElementById("input-container");
+//         inputContainer.style.marginTop = `${container.clientHeight + 20}px`;
+
+//         // Remove the corresponding value from the sliderValues array
+//         sliderValues.pop();
+//     }
+
+// }
+
 
 // Add an event listener to the document for the Escape key press event
+
 document.addEventListener("keyup", (event) => {
     if (event.key === "Escape") {
         removeLastSlider();

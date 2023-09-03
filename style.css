@@ -1,3 +1,24 @@
+/* Reset default margin and padding for body and container */
+body, .container {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Full viewport height */
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+}
+
+/* Add styles for the heading */
+h1 {
+    font-size: 80px;
+    margin-bottom: 20px; /* Optional spacing between heading and sliders */
+    text-align: center;
+}
+
+
+
+
 /* Add your CSS styles for the sliders here */
 .slider {
     width: 80%;
@@ -11,10 +32,23 @@
     position: absolute;
     transition: left 0.3s ease-in-out;
     white-space: nowrap;
+    border-bottom: 20px solid transparent;
 }
 
 /* ... (previous CSS styles) ... */
 .percentage {
     margin-left: 10px;
     font-weight: bold;
+}
+
+.my-text-input {
+    /* CSS styles for the input text box go here */
+    border: 1px solid #ccc;
+    padding: 5px;
+    width: 200px;
+    /* Add more styles as needed */
+}
+
+.input-button{
+    margin-top: 20px;
 }
