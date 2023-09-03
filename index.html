@@ -3,34 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slider App</title>
     <link rel="stylesheet" href="style.css">
+    <title>Slider App</title>
 </head>
 <body>
-    <div class="container">
+    <div class="app-container">
+        <h1 class="app-title">Slider App</h1>
     
-        <h1>Slider App</h1>
-
-        <div id="slider-container">
+        
+        <div class="input-container">
+            <input type="text" id="slider-name" placeholder="Enter slider name">
+            <button id="add-slider-btn">Add Slider</button>
+        </div>
+       
+       
+        <div id="sliders-container">
             <!-- Sliders will be added here dynamically -->
-            
-            
         </div>
-
-        <div id="input-container" class="input-button">
-            <input type="text" id ="slider-title" class="my-text-input" placeholder="Enter text here">
-            <button id="add-slider">Add Slider</button>
-            <script src="script.js"></script>
-        </div>
-    </div>
     
-
-<div id="error-message" class="error"></div>
-<div id="slider-container">
-    <!-- Sliders and titles will be added here dynamically -->
-</div>
-<!-- ... (remaining HTML code) ... -->
-
-	
+        <script src="script.js"></script>
+        <p id="error-message" style="color: red;"></p>
+    </div>
 </body>
 </html>

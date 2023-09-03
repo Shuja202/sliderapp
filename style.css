@@ -1,54 +1,70 @@
-/* Reset default margin and padding for body and container */
-body, .container {
+
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    height: 100vh; /* Full viewport height */
-    display: flex; /* Use flexbox for centering */
-    flex-direction: column; /* Stack items vertically */
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
 }
 
-/* Add styles for the heading */
-h1 {
-    font-size: 80px;
-    margin-bottom: 20px; /* Optional spacing between heading and sliders */
-    text-align: center;
+.app-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(127, 76, 215, 0.2);
 }
 
-
-
-
-/* Add your CSS styles for the sliders here */
-.slider {
-    width: 80%;
-    margin: 10px auto;
-}
-.slider-title {
-    text-align: center;
-    margin-top: 5px;
-    font-weight: bold;
-    color: #333;
-    position: absolute;
-    transition: left 0.3s ease-in-out;
-    white-space: nowrap;
-    border-bottom: 20px solid transparent;
+.app-title {
+    font-size: 24px;
 }
 
-/* ... (previous CSS styles) ... */
-.percentage {
-    margin-left: 10px;
-    font-weight: bold;
-}
-
-.my-text-input {
-    /* CSS styles for the input text box go here */
-    border: 1px solid #ccc;
-    padding: 5px;
-    width: 200px;
-    /* Add more styles as needed */
-}
-
-.input-button{
+.input-container {
+    display: flex;
+    justify-content: center; /* Center elements horizontally */
+    align-items: center; /* Center elements vertically */
     margin-top: 20px;
 }
+
+#sliders-container {
+    display: flex;
+    flex-direction: column; /* Stack sliders vertically */
+    align-items: center; /* Center sliders horizontally */
+    justify-content: center; /* Center sliders vertically */
+    margin-top: 20px;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    max-width: 80%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 400px; /* Adjust the width as needed */
+}
+
+.slider {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Center elements horizontally */
+    align-items: center; /* Center elements horizontally */
+    margin-bottom: 10px;
+}
+
+.slider-input {
+    width: 70%;
+}
+
+.slider-name {
+    width: 15%; /* Adjust the width as needed */
+    font-weight: bold;
+    text-align: left; /* Align the name to the left */
+}
+
+.slider-value {
+    margin-left: 10px; /* Add spacing between slider and its value */
+    font-weight: bold; /* Optionally make the value bold */
+}
+
