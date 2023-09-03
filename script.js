@@ -36,6 +36,16 @@ function createSlider(name, value) {
     const sliderContainer = document.createElement("div");
     sliderContainer.classList.add("slider-container");
 
+    // Set a minimum width of 400px for slider containers
+    sliderContainer.style.minWidth = "400px";
+
+    // Delete button with Unicode "X" character
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-button");
+    deleteButton.innerHTML = "&#10006;"; // Unicode "X" character
+    deleteButton.title = "Delete Slider"; // Optional tooltip text
+
+
     const sliderNameElement = document.createElement("span");
     sliderNameElement.classList.add("slider-name");
     sliderNameElement.textContent = name;
@@ -51,17 +61,41 @@ function createSlider(name, value) {
     sliderValueElement.classList.add("slider-value");
     sliderValueElement.textContent = `${value}%`;
 
+    // Event listener to handle slider removal
+    deleteButton.addEventListener("click", () => {
+        sliderContainer.remove();
+        updateSliderWidth(); // Update the width of all slider containers
+        updateSliderValues();
+    });
+
+
     sliderInput.addEventListener("input", () => {
         sliderValueElement.textContent = `${sliderInput.value}%`;
         updateSliderValues();
     });
 
+    sliderContainer.appendChild(deleteButton); // Add the delete button
     sliderContainer.appendChild(sliderNameElement);
     sliderContainer.appendChild(sliderInput);
     sliderContainer.appendChild(sliderValueElement);
    
 
     return sliderContainer;
+}
+
+// Function to update the width of all slider containers
+function updateSliderWidth() {
+    const sliderContainers = document.querySelectorAll(".slider-container");
+    const numContainers = sliderContainers.length;
+
+    // Calculate the available width for slider inputs
+    const availableWidth = 100 - 15 * numContainers; // 15% for each slider name
+
+    // Update the width of slider inputs
+    sliderContainers.forEach((container) => {
+        const sliderInput = container.querySelector(".slider-input");
+        sliderInput.style.width = `${availableWidth / numContainers}%`;
+    });
 }
 
 function getRandomValue() {

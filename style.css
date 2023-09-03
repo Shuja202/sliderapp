@@ -9,7 +9,7 @@ body {
 }
 
 .app-container {
-    max-width: 600px;
+    max-width: 80%;
     margin: 0 auto;
     padding: 20px;
     background-color: white;
@@ -39,10 +39,10 @@ body {
 .slider-container {
     display: flex;
     align-items: center;
-    max-width: 80%;
     border: 1px solid #ccc;
     padding: 10px;
-    width: 400px; /* Adjust the width as needed */
+    max-width: 80%; /* 80% of the screen width */
+    min-width: 400px; /* Minimum width of 400px */
 }
 
 .slider {
@@ -54,17 +54,30 @@ body {
 }
 
 .slider-input {
-    width: 70%;
+    width: 60%; /* 60% for the slider */
 }
 
 .slider-name {
-    width: 15%; /* Adjust the width as needed */
-    font-weight: bold;
-    text-align: left; /* Align the name to the left */
+    width: 20%; /* 20% for the text, including 5px margin */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Display ellipsis for long text */
+    margin-left: 5px; /* 5px margin from the left wall */
 }
 
 .slider-value {
-    margin-left: 10px; /* Add spacing between slider and its value */
-    font-weight: bold; /* Optionally make the value bold */
+    width: 20%; /* 20% for the slider value, including 10px margin on each side */
+    text-align: right;
+    margin: 0 10px; /* 10px margin on each side of the slider value */
 }
 
+.delete-button {
+    background-color: transparent;
+    border: none;
+    color: red;
+    font-size: 16px;
+    cursor: pointer;
+    position: absolute;
+    top: 5px; /* Adjust top positioning */
+    right: 5px; /* Adjust right positioning */
+}
