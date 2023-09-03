@@ -46,14 +46,12 @@ function updateTitlePosition(slider, titleElement) {
     titleElement.style.left = `${newPosition}px`;
 }
 
-// Variable to keep track of the cumulative height
-let cumulativeHeight = 0;
-
 // Function to add a new slider when the button is clicked
 function addSlider() {
     const container = document.getElementById("slider-container");
     const titleInput = document.getElementById("slider-title");
     const errorMessage = document.getElementById("error-message");
+    const inputContainer = document.getElementById("input-container");
 
     const title = titleInput.value.trim();
     if (title === "") {
@@ -67,29 +65,17 @@ function addSlider() {
     const value = Math.floor(Math.random() * 101);
     sliderValues.push({ title, value });
 
-    
-
-    // Create a container for the slider and its title
-    const sliderContainer = document.createElement("div");
-    sliderContainer.className = "slider-container";
-    sliderContainer.style.marginTop = `${cumulativeHeight}px`; // Set margin-top based on cumulative height
+    const sliderContainer = createSliderWithValue(value);
     container.appendChild(sliderContainer);
-    
-    // Create the slider and percentage text
-    const slider = createSliderWithValue(value);
-    sliderContainer.appendChild(slider);
 
     // Display the title below the slider
     const titleElement = document.createElement("div");
     titleElement.className = "slider-title";
     titleElement.innerText = title;
-    sliderContainer.appendChild(titleElement);
+    container.appendChild(titleElement);
 
-    // Update the cumulative height for the next slider
-    cumulativeHeight += sliderContainer.clientHeight + 20;
-	
-	// Add an event listener to the slider for mousemove events
-    //const slider = sliderContainer.querySelector(".slider");  - - not sure why this line would be needed but keeping it
+    // Add an event listener to the slider for mousemove events
+    const slider = sliderContainer.querySelector(".slider");
     slider.addEventListener("mousemove", () => {
         updateTitlePosition(slider, titleElement);
         updatePercentageText(slider, sliderContainer);
@@ -98,6 +84,11 @@ function addSlider() {
     // Initialize the title position and percentage text
     updateTitlePosition(slider, titleElement);
     updatePercentageText(slider, sliderContainer);
+
+    // Calculate the position of the input container just below the title element
+    const titleBottom = titleElement.getBoundingClientRect().bottom;
+    inputContainer.style.marginTop = `${titleBottom + 20}px`;
+
 
     /* - might want to add later, the code that keeps the input container lower than the last slider
 
