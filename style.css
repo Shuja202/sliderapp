@@ -1,0 +1,20 @@
+/* Add your CSS styles for the sliders here */
+.slider {
+    width: 80%;
+    margin: 10px auto;
+}
+.slider-title {
+    text-align: center;
+    margin-top: 5px;
+    font-weight: bold;
+    color: #333;
+    position: absolute;
+    transition: left 0.3s ease-in-out;
+    white-space: nowrap;
+}
+
+/* ... (previous CSS styles) ... */
+.percentage {
+    margin-left: 10px;
+    font-weight: bold;
+}
